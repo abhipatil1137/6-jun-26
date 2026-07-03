@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-int main(){
+int main(){ 
 
     int current_salary = 2000;
     int appaisis_amount = 500;
