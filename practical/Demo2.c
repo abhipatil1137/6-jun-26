@@ -1,75 +1,54 @@
 #include <stdio.h>
-#include <string.h>
-
-struct Student {
-    char name[50];
-    int rollno;
-    float marks;
-    char grade;
-};
-
-// Function to assign grade
-void assignGrade(struct Student *s) {
-    if (s->marks >= 90)
-        s->grade = 'A';
-    else if (s->marks >= 75)
-        s->grade = 'B';
-    else if (s->marks >= 60)
-        s->grade = 'C';
-    else if (s->marks >= 35)
-        s->grade = 'D';
-    else
-        s->grade = 'F';
-}
 
 int main() {
-    struct Student students[3];
-    int i, top = 0;
+    int choice, roll_no, marks;
+    char name[50];
 
-    // Input student details
-    for (i = 0; i < 3; i++) {
-        printf("\nEnter details of student %d\n", i + 1);
+    while (1) {
+        printf("\n1. Add Student\n");
+        printf("2. View Student\n");
+        printf("3. Update Marks\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
 
-        printf("Enter name: ");
-        scanf("%s", students[i].name);
+        switch (choice) {
 
-        printf("Enter roll number: ");
-        scanf("%d", &students[i].rollno);
+            case 1:
+                printf("Enter Roll No: ");
+                scanf("%d", &roll_no);
 
-        printf("Enter marks: ");
-        scanf("%f", &students[i].marks);
+                printf("Enter Name: ");
+                scanf("%s", name);
 
-        // Assign grade
-        assignGrade(&students[i]);
+                printf("Enter Marks: ");
+                scanf("%d", &marks);
 
-        // Find top performer
-        if (students[i].marks > students[top].marks) {
-            top = i;
+                printf("Student added successfully!\n");
+                break;
+
+            case 2:
+                printf("\nStudent Details\n");
+                printf("Roll No : %d\n", roll_no);
+                printf("Name    : %s\n", name);
+                printf("Marks   : %d\n", marks);
+                break;
+
+            case 3:
+                printf("Enter Updated Marks: ");
+                scanf("%d", &marks);
+
+                printf("Marks updated successfully!\n");
+                break;
+
+            case 4:
+                printf("Successfully Exit\n");
+                return 0;
+
+            default:
+                printf("Invalid Choice!\n");
         }
     }
-
-    // Display student records
-    printf("\n\nStudent Records\n");
-    printf("---------------------------------------------\n");
-    printf("Name\t\tRoll No\tMarks\tGrade\n");
-    printf("---------------------------------------------\n");
-
-    for (i = 0; i < 3; i++) {
-        printf("%s\t\t%d\t%.2f\t%c\n",
-               students[i].name,
-               students[i].rollno,
-               students[i].marks,
-               students[i].grade);
-    }
-
-    printf("---------------------------------------------\n");
-
-    // Display top performer
-    printf("\nTop Performer:\n");
-    printf("Name: %s\n", students[top].name);
-    printf("Roll No: %d\n", students[top].rollno);
-    printf("Marks: %.2f\n", students[top].marks);
-    printf("Grade: %c\n", students[top].grade);
 
     return 0;
 }
